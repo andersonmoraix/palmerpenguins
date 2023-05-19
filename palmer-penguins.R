@@ -49,3 +49,19 @@ ggplot(data=penguins) +
 ggplot(data=penguins) +
   geom_point(mapping=aes(x = flipper_length_mm, y = body_mass_g, color=species)) + 
   facet_grid(sex~species)
+
+#adicionado titulo, subtítulo e legenda
+ggplot(data=penguins) +
+  geom_point(mapping=aes(x = flipper_length_mm, y = body_mass_g, color=species)) + 
+  labs(title="Palmer Penguins: Massa Corporal vs. Tamanho da nadadeira", subtitle = "Amostra sobre 3 espécies de pinguins",
+         caption="Dados de Drª Kristen Gorman") + 
+  annotate("text", x=220,y=3500, label="Os Gentoos sao maiores", color="red", fontface="bold", size=3, angle=90)
+
+# adicionando dados do gráfico a uma variável para encurtar a escrita do código
+p <- ggplot(data=penguins) +
+  geom_point(mapping=aes(x = flipper_length_mm, y = body_mass_g, color=species)) + 
+  labs(title="Palmer Penguins: Massa Corporal vs. Tamanho da nadadeira", subtitle = "Amostra sobre 3 espécies de pinguins",
+       caption="Dados de Drª Kristen Gorman")
+
+#utilazando a variável p
+p + annotate("text", x=220,y=3500, label="Os Gentoos sao maiores", color="gray", fontface="bold", size=3, angle=1)
