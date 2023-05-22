@@ -1,72 +1,113 @@
-#instalando pacotes
-install.packages("rmarkdown")
-install.packages("tidyverse")
+---
+title: "palmer_penguins"
+author: "Anderson Morais"
+date: "2023-05-20"
+output: html_document
+---
+### Palmer Penguins
 
-#carregando pacotes
+Apresentação do pacote Palmer Penguins prensente no R.
+
+
+## Carregando os pacotes 
+```{r}
 library("ggplot2")
 library("palmerpenguins")
 library("tidyverse")
+data("penguins")
+View("penguins")
+```
 
-#criando gráfico com as especies de pinguins
-ggplot(data=penguins) +
-  geom_point(mapping=aes(x = flipper_length_mm, y = body_mass_g))
 
-#grafico que cada especie de pinguin e representada de uma cor diferente
+## Para a vizualização de dados do conjunto Palmer Penguins no geral.
+```{r }
+ggplot(data = penguins) +
+geom_point(mapping = aes(x = flipper_length_mm, y = body_mass_g))
+```
+
+
+## Gráfico que cada espécie de pinguin é representada por cores diferentes.
+```{r}
 ggplot(data=penguins) +
   geom_point(mapping=aes(x = flipper_length_mm, y = body_mass_g, color=species))
+```
 
-#formato grafico diferente para cada tipo de pinguin
+
+## Exibindo cada espécie de pinguin por formas gráficas diferentes.
+```{r}
 ggplot(data=penguins) +
   geom_point(mapping=aes(x = flipper_length_mm, y = body_mass_g, shape=species))
+```
 
-#forma e cor grafica de cada espécie diferente
+
+## Forma e cor grafica de cada espécie diferente.
+```{r}
 ggplot(data=penguins) +
   geom_point(mapping=aes(x = flipper_length_mm, y = body_mass_g, shape=species, color=species))
+```
 
-#alterando tamanho dos objetos graficos
+
+## Alterando o tamanho dos objetos gráficos.
+```{r}
 ggplot(data=penguins) +
   geom_point(mapping=aes(x = flipper_length_mm, y = body_mass_g, shape=species, color=species, size=species))
+```
 
-#grafico em linha
+## Gráfico em linha mostrando a evolução do tamanho dos pinguins de uma forma mais clara.
+```{r}
 ggplot(data=penguins) +
   geom_smooth(mapping=aes(x=flipper_length_mm, y=body_mass_g))
+```
 
-#grafico com dois elementos gráficos
+
+## Gráfico com dois elementos gráficos.
+```{r}
 ggplot(data=penguins) +
   geom_smooth(mapping=aes(x=flipper_length_mm, y=body_mass_g)) +
   geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g))
+```
 
-#grafico em linha para cada especie
+
+## Gráfico em linha para cada espécie
+```{r}
+
 ggplot(data=penguins) +
   geom_smooth(mapping=aes(x=flipper_length_mm, y=body_mass_g, linetype=species))
+```
 
-#grafico com dois elementos gráficos geom jitter
+
+## Gráfico com dois elementos gráficos geom jitter.
+```{r}
 ggplot(data=penguins) +
   geom_smooth(mapping=aes(x=flipper_length_mm, y=body_mass_g)) +
   geom_jitter(mapping=aes(x=flipper_length_mm, y=body_mass_g))
+```
 
-#criando grafico com diferentes faces, 1 para cada espécie
+
+## criando gráfico com diferentes faces, 1 para cada espécie.
+```{r}
 ggplot(data=penguins) +
   geom_point(mapping=aes(x = flipper_length_mm, y = body_mass_g, color=species)) + 
   facet_wrap(~species)
+```
 
-#colocando variável de sexo e espécie
+
+## Inserindo variáveis de sexo e espécie.
+```{r}
 ggplot(data=penguins) +
   geom_point(mapping=aes(x = flipper_length_mm, y = body_mass_g, color=species)) + 
   facet_grid(sex~species)
+```
 
-#adicionado titulo, subtítulo e legenda
+
+## adicionando título, subtítulo e legenda.
+```{r}
 ggplot(data=penguins) +
   geom_point(mapping=aes(x = flipper_length_mm, y = body_mass_g, color=species)) + 
   labs(title="Palmer Penguins: Massa Corporal vs. Tamanho da nadadeira", subtitle = "Amostra sobre 3 espécies de pinguins",
          caption="Dados de Drª Kristen Gorman") + 
   annotate("text", x=220,y=3500, label="Os Gentoos sao maiores", color="red", fontface="bold", size=3, angle=90)
+```
 
-# adicionando dados do gráfico a uma variável para encurtar a escrita do código
-p <- ggplot(data=penguins) +
-  geom_point(mapping=aes(x = flipper_length_mm, y = body_mass_g, color=species)) + 
-  labs(title="Palmer Penguins: Massa Corporal vs. Tamanho da nadadeira", subtitle = "Amostra sobre 3 espécies de pinguins",
-       caption="Dados de Drª Kristen Gorman")
 
-#utilazando a variável p
-p + annotate("text", x=220,y=3500, label="Os Gentoos sao maiores", color="gray", fontface="bold", size=3, angle=1)
+
